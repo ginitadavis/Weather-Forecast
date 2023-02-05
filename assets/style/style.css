@@ -1,0 +1,26 @@
+h1 {
+    background-color: rgb(72, 61, 139);
+    color: #FFFAF0;
+    padding: 10px;
+    margin: 2px;
+}
+
+.container {
+    width: inherit;
+  }
+
+.cityLabel {
+    height: 20px;
+}
+
+.selectedCity {
+    border: solid black;
+}
+
+.buttons {
+    border: solid black;
+}
+
+.forecast {
+    border: solid black;
+}
