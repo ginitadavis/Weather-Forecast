@@ -14,13 +14,21 @@ h1 {
 }
 
 .selectedCity {
-    border: solid black;
+    border: solid black 1px;
+    width: 50%;
 }
 
-.buttons {
+/*.forecast {
     border: solid black;
+}*/
+
+.box {
+    background-color: #56709c;
+    border: solid black 1px;
+    color: #FFFAF0;
 }
 
-.forecast {
-    border: solid black;
+.buttonContainer {
+    width: 20%;
+    margin: 5px;
 }

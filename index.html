@@ -17,17 +17,17 @@
     <h1 class="text-center">Weather Dashboard</h1>
     <div class="parent-box d-flex">
 
-        <section class="text-center" style="width: 40%">
+        <section style="width: 40%">
             <form class="searchForm d-flex pl-5 pt-5 pr-5 flex-column">
                 <p class="cityLabel fw-bolder">Search for a City:</p>
                 <textarea class="cityText form-control mb-1 mt-1"></textarea>
-                <button class="search btn btn-primary" type="submit">Search</button>
+                <button class="search btn btn-primary text-center" type="submit">Search</button>
                 <hr />
             </form>
-            <section class="buttons">
-                <p>Buttons</p>
+            <section class="buttonContainer">
             </section>
         </section>
+        
         <section style="width: 60%">
             <section class="selectedCity">
                 <h2 id="city-name"></h2>
@@ -37,8 +37,40 @@
 
 
             </section>
-            <section class="forecast">
-                <p>Forecast</p>
+
+            <p>5-day-Forecast</p>
+            <section class="forecast d-flex justify-content-between">
+                
+                <section class="box">
+                    <p id="date1" class="fw-bolder"></p>
+                    <p id="temperature1"></p>
+                    <p id="wind1"></p>
+                    <p id="humidity1"></p>
+                </section>
+                <section class="box">
+                    <p id="date2"></p>
+                    <p id="temperature2"></p>
+                    <p id="wind2"></p>
+                    <p id="humidity2"></p>
+                </section>
+                <section class="box">
+                    <p id="date3"></p>
+                    <p id="temperature3"></p>
+                    <p id="wind3"></p>
+                    <p id="humidity3"></p>
+                </section>
+                <section class="box">
+                    <p id="date4"></p>
+                    <p id="temperature4"></p>
+                    <p id="wind4"></p>
+                    <p id="humidity4"></p>
+                </section>
+                <section class="box">
+                    <p id="date5"></p>
+                    <p id="temperature5"></p>
+                    <p id="wind5"></p>
+                    <p id="humidity5"></p>
+                </section>
             </section>
         </section>
 
