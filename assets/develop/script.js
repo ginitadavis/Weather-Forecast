@@ -32,7 +32,9 @@ var weatherSectionContainer = document.querySelector('.weather-section-container
 
 
 function getApi(city) {
-    console.log(boxContainers);
+    
+    document.querySelector('.cityText').value = '';
+    
     //I first get the complete url with the city parameter entered by the user
     var queryString = url + city + apiKey;
     //The second url gets the forecast
@@ -155,8 +157,7 @@ function getApi(city) {
         createButton.textContent = city;
         buttonContainer.appendChild(createButton);
         buttonContainer.className = 'buttonContainer d-flex pl-5 pb-2 pr-5 flex-column'
-        
-
+    
 }
 
 //I get the text from the textarea and if the item is not null, I call function getApi
