@@ -1,5 +1,5 @@
 var apiKey = '&APPID=0ed0de76f83b69a5e0d47aed15600404';
-var url = 'http://api.openweathermap.org/data/2.5/weather?q=';
+var url = 'https://api.openweathermap.org/data/2.5/weather?q=';
 var selectedCity = document.querySelector('.selectedCity');
 var search = document.querySelector('.search');
 var cityName = document.getElementById('city-name');
@@ -38,7 +38,7 @@ function getApi(city) {
     //I first get the complete url with the city parameter entered by the user
     var queryString = url + city + apiKey;
     //The second url gets the forecast
-    var urlForecast = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + apiKey;
+    var urlForecast = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + apiKey;
 
     fetch(queryString)
         .then(function (response) {
