@@ -61,7 +61,7 @@ function getApi(city) {
             wind.textContent = 'Wind: ' + data.wind.speed + ' MPH';
             humidity.textContent = 'Humidity: ' + data.main.humidity + '%';
 
-            var urlIcon = 'http://openweathermap.org/img/wn/' + icon + '@2x.png';
+            var urlIcon = 'https://openweathermap.org/img/wn/' + icon + '@2x.png';
 
             fetch(urlIcon)
                 .then(response => {
