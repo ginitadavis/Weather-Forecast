@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,24 +10,27 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style/reset.css" />
     <link rel="stylesheet" href="assets/style/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inspiration&family=Itim&family=Nanum+Myeongjo&family=Playfair+Display&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <h1 class="text-center">Weather Dashboard</h1>
-    <div class="parent-box d-flex">
-
-        <section style="width: 40%">
+    <div class="d-flex">
+        <section class="search-section-container">
             <form class="searchForm d-flex pl-5 pt-5 pr-5 flex-column">
                 <p class="cityLabel fw-bolder">Search for a City:</p>
                 <textarea class="cityText form-control mb-1 mt-1"></textarea>
+                    <!-- <img id= "imgText" src="assets/images/search-icon.png"> -->
+                
                 <button class="search btn btn-primary text-center" type="submit">Search</button>
                 <hr />
             </form>
+
             <section class="buttonContainer">
             </section>
         </section>
-        
-        <section style="width: 60%">
+
+        <section class="weather-section-container">
             <section class="selectedCity">
                 <h2 id="city-name"></h2>
                 <p id="temperature"></p>
@@ -38,10 +40,10 @@
 
             </section>
 
-            <p>5-day-Forecast</p>
-            <section class="forecast d-flex justify-content-between">
+            <h2 class="forecastTitle">5-day-Forecast</h2>
+            <section class="forecast d-flex justify-content-around">
                 
-                <section class="box">
+                <section class="box" >
                     <p id="date1" class="fw-bolder"></p>
                     <p id="temperature1"></p>
                     <p id="wind1"></p>
@@ -73,7 +75,6 @@
                 </section>
             </section>
         </section>
-
     </div>
 
 

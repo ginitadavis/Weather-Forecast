@@ -1,7 +1,6 @@
 var apiKey = '&APPID=0ed0de76f83b69a5e0d47aed15600404';
 var url = 'http://api.openweathermap.org/data/2.5/weather?q=';
-//var citySelected = document.getElementById('citySelected');
-var selectedCity = document.querySelector('.selectedCity');//Displays the city name in the section on the right
+var selectedCity = document.querySelector('.selectedCity');
 var search = document.querySelector('.search');
 var cityName = document.getElementById('city-name');
 var temperature = document.getElementById('temperature');
@@ -14,7 +13,7 @@ var humidity1 = document.getElementById('humidity1');
 var date2 = document.getElementById('date2');
 var temperature2 = document.getElementById('temperature2');
 var wind2 = document.getElementById('wind2');
-var humidity2 = document.getElementById('humidity');
+var humidity2 = document.getElementById('humidity2');
 var date3 = document.getElementById('date3');
 var temperature3 = document.getElementById('temperature3');
 var wind3 = document.getElementById('wind3');
@@ -28,28 +27,33 @@ var temperature5 = document.getElementById('temperature5');
 var wind5 = document.getElementById('wind5');
 var humidity5 = document.getElementById('humidity5');
 var buttonContainer = document.querySelector('.buttonContainer');
+var boxContainers = document.querySelectorAll('.box');
+var weatherSectionContainer = document.querySelector('.weather-section-container');
+
 
 function getApi(city) {
+    console.log(boxContainers);
+    //I first get the complete url with the city parameter entered by the user
     var queryString = url + city + apiKey;
-    var urlForecast = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + apiKey
+    //The second url gets the forecast
+    var urlForecast = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + apiKey;
 
     fetch(queryString)
         .then(function (response) {
             if (!response.ok) {
-                throw response.json();
+                window.alert('Not a valid city');
+                throw new Error('Network response was not ok'); //response.json();
             }
-
             return response.json();
         })
-
         .then(function (data) {
 
+            //if fetch was successful
             var currentDate = dayjs();
             var formattedDate = currentDate.format("MM/DD/YYYY");
             var icon = data.weather[0].icon;
             tempF = (data.main.temp - 273.15) * 9 / 5 + 32;
             tempF = tempF.toFixed(2);
-
             cityName.textContent = data.name + '(' + formattedDate + ')'; //Need to add icon
             temperature.textContent = 'Temperature: ' + tempF + 'F°';
             wind.textContent = 'Wind: ' + data.wind.speed + ' MPH';
@@ -76,6 +80,9 @@ function getApi(city) {
                     console.error('There was a problem:', error);
                 });
 
+        })
+        .catch(error => {
+            console.error('There was a problem:', error);
         });
 
     var dataLenght;
@@ -87,7 +94,6 @@ function getApi(city) {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             for (var i = 0; i < data.list.length; i++) {
 
                 tempF = (data.list[i].main.temp - 273.15) * 9 / 5 + 32;
@@ -123,45 +129,62 @@ function getApi(city) {
                     humidity5.textContent = 'Humidity: ' + data.list[i].main.humidity + ' %';
                 }
 
+               
             }
-
+            // show the boxes here??
+            weatherSectionContainer.setAttribute('style', 'display: block');
+            boxContainers.forEach(function(section) {
+                section.setAttribute('style', 'display: block');
+            });
         })
         .catch(error => {
             console.error('There was a problem:', error);
         });
 
-    var createButton = document.createElement('button');
-    createButton.textContent = city;
-    buttonContainer.appendChild(createButton);
-    buttonContainer.className = 'btn btn-primary';
-
-    /*var newButton = $('<button>');
-    newButton.addClass('new-button btn btn-primary');
-    newButton.attr('data-button', city);
-    newButton.text(city);
-    buttonContainer.append(newButton);*/
+        var checkIfButtonExists = document.getElementsByClassName('newButton');
+        if (checkIfButtonExists.length > 0){
+            for (var x = 0; x < checkIfButtonExists.length ; x++){
+                if (checkIfButtonExists[x].textContent === city){
+                    return;
+                }
+            }
+        }
+        
+        var createButton = document.createElement('button');
+        createButton.className = 'newButton btn btn-primary my-2';
+        createButton.textContent = city;
+        buttonContainer.appendChild(createButton);
+        buttonContainer.className = 'buttonContainer d-flex pl-5 pb-2 pr-5 flex-column'
+        
 
 }
 
+//I get the text from the textarea and if the item is not null, I call function getApi
 function handleSearchFormSubmit(event) {
     event.preventDefault();
 
     var searchCity = document.querySelector('.cityText').value;
-    console.log(searchCity);
 
     if (!searchCity) {
-        console.error('You need a search input value!');
-        return;
-    }
+        window.alert('Please enter a city name');
+        return null;
+    } 
 
     getApi(searchCity);
 
 }
 
+//Any time an user clicks on the search button calls the function handleSearchFormSubmit
 search.addEventListener('click', handleSearchFormSubmit);
 
-buttonContainer.addEventListener('click', function(){
-    var buttonCity = this.text;
-    console.log(buttonCity);
-    //getApi(buttonCity);
+//Any time there is a search for a new city a new button is created in the buttonContainer section
+//When one of those buttons is clicked, then this function gets the button text and calls the
+//function getApi and sends the city name
+buttonContainer.addEventListener('click', function(event){
+    var buttonCity = event.target.innerHTML;
+    getApi(buttonCity);
 })
+    
+
+
+

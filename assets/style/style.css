@@ -1,8 +1,21 @@
+* {
+    font-family: 'Nanum Myeongjo', serif;
+    background-image: url('../images/night-background.jpg');
+    color: #FFFAF0;
+    background-color: transparent;
+}
+
+/* main {
+    background-image: url('../Images/test-background.jpg');
+  } */
+
 h1 {
     background-color: rgb(72, 61, 139);
-    color: #FFFAF0;
+    color: #FFFAF0; 
     padding: 10px;
     margin: 2px;
+    font-family: 'Roboto Slab', serif;
+
 }
 
 .container {
@@ -13,22 +26,57 @@ h1 {
     height: 20px;
 }
 
-.selectedCity {
-    border: solid black 1px;
-    width: 50%;
+.search {
+    margin-top: 35px;
+  }
+
+.cityText {
+    color: white;
 }
 
-/*.forecast {
-    border: solid black;
-}*/
+#imgText {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    margin-top: -45px;
+    margin-left: 270px;
+  }
+
+.selectedCity {
+    border: solid black 1px;
+    padding: 1rem 0.5rem;
+    border-radius: 8px;
+}
+
+.search-section-container {
+    min-width: 40%;
+    padding-left: 2rem;
+}
+
+.weather-section-container {
+    min-width: 60%;
+    margin: 2px;
+    display: none;
+}
 
 .box {
-    background-color: #56709c;
+    /* background-color: #56709c; */
     border: solid black 1px;
     color: #FFFAF0;
+    border-radius: 8px;
+    padding: 5px;
+    /* font-weight: bold; */
 }
 
 .buttonContainer {
     width: 20%;
     margin: 5px;
+}
+
+.visible {
+    display: block;
+}
+
+.forecastTitle {
+    text-align: center;
 }
