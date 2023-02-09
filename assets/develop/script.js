@@ -63,6 +63,7 @@ function getApi(city) {
 
             var urlIcon = 'https://openweathermap.org/img/wn/' + icon + '@2x.png';
 
+            //Second fetch
             fetch(urlIcon)
                 .then(response => {
                     if (!response.ok) {
