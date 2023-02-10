@@ -2,6 +2,7 @@ var apiKey = '&APPID=0ed0de76f83b69a5e0d47aed15600404';
 var url = 'https://api.openweathermap.org/data/2.5/weather?q=';
 var selectedCity = document.querySelector('.selectedCity');
 var search = document.querySelector('.search');
+var historyBtn = document.querySelector('.history');
 var cityName = document.getElementById('city-name');
 var temperature = document.getElementById('temperature');
 var wind = document.getElementById('wind');
@@ -62,6 +63,8 @@ function getApi(city) {
             humidity.textContent = 'Humidity: ' + data.main.humidity + '%';
 
             var urlIcon = 'https://openweathermap.org/img/wn/' + icon + '@2x.png';
+
+            //Save the last searched city into the local storage
 
             //Second fetch
             fetch(urlIcon)
@@ -172,6 +175,16 @@ function handleSearchFormSubmit(event) {
         return null;
     } 
 
+    var cityExists = localStorage.getItem('city');
+    if (cityExists){
+        //localStorage.setItem('city', searchCity);
+        localStorage.setItem('city', cityExists + '-' + searchCity);
+        console.log(localStorage.getItem('city'));
+    } else {
+        localStorage.setItem('city', searchCity);
+        console.log(localStorage.getItem('city'));
+    }
+    
     getApi(searchCity);
 
 }
@@ -187,6 +200,35 @@ buttonContainer.addEventListener('click', function(event){
     getApi(buttonCity);
 })
     
+historyBtn.addEventListener('click', retrieveHistory);
 
+function retrieveHistory(e){
+
+    e.preventDefault();
+
+
+    //If local Storage is not null
+    if (localStorage.getItem('city')){
+
+        //Gets the cities from the local Storage that are separated by -
+        var cities = localStorage.getItem('city').split('-');
+
+        //Gets only the unique cities
+        let uniqueArray = cities.filter((item, index) => cities.indexOf(item) === index);
+        console.log(uniqueArray);
+        
+        //Pulls all the buttons with the cities searched  previously
+        for (var y=0 ; y < uniqueArray.length; y++){
+            var createButton = document.createElement('button');
+            createButton.className = 'newButton btn btn-primary my-2';
+            createButton.textContent = uniqueArray[y];
+            buttonContainer.appendChild(createButton);
+            buttonContainer.className = 'buttonContainer d-flex pl-5 pb-2 pr-5 flex-column';
+        }
+    } else {
+        window.alert('There is no history');
+    }
+    
+}
 
 
