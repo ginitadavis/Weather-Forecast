@@ -14,6 +14,8 @@ Weather Forecast
 Enter a city in the input area and click the search button. In the right side of the screen the current weather and the forecast for the next 5 days will appear.
 In the bottom left of the screen, buttons with the names of the searched cities will be displayed, and once clicked they will show again the information for the  city that was clicked.
 
+The button Search History will display the list of buttons of the cities that were searched previously. Clicking any of the buttons will display that specific city weather information.
+
 Link to the deployed app https://ginitadavis.github.io/Weather-Forecast/
 
 ## License
