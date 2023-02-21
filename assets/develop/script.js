@@ -31,10 +31,19 @@ var buttonContainer = document.querySelector('.buttonContainer');
 var boxContainers = document.querySelectorAll('.box');
 var weatherSectionContainer = document.querySelector('.weather-section-container');
 
+var cityLocalStorage = localStorage.getItem('citySaved');
+
+console.log('TEST')
+console.log(cityLocalStorage)
+
+if (cityLocalStorage){
+    getApi(cityLocalStorage);
+}
 
 function getApi(city) {
     
     document.querySelector('.cityText').value = '';
+    localStorage.setItem('citySaved', city);
     
     //I first get the complete url with the city parameter entered by the user
     var queryString = url + city + apiKey;
@@ -174,16 +183,6 @@ function handleSearchFormSubmit(event) {
         window.alert('Please enter a city name');
         return null;
     } 
-
-    var cityExists = localStorage.getItem('city');
-    if (cityExists){
-        //localStorage.setItem('city', searchCity);
-        localStorage.setItem('city', cityExists + '-' + searchCity);
-        console.log(localStorage.getItem('city'));
-    } else {
-        localStorage.setItem('city', searchCity);
-        console.log(localStorage.getItem('city'));
-    }
     
     getApi(searchCity);
 
